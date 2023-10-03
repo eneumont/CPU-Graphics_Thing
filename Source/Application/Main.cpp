@@ -5,8 +5,7 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
 	INFO_LOG("Initialize Engine...")
 
 	nc::MemoryTracker::Initialize();
@@ -20,8 +19,7 @@ int main(int argc, char* argv[])
 
 	// main loop
 	bool quit = false;
-	while (!quit)
-	{
+	while (!quit) {
 		// update
 		ENGINE.Update();
 		quit = ENGINE.IsQuit();
