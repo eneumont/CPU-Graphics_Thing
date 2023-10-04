@@ -16,7 +16,9 @@ namespace nc {
     }
 
     void World01::Update(float dt) {
-        m_angle += dt * 90;
+        //m_angle += dt * 90;
+        m_angle += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_W) ? dt * 90 : 0;
+        m_angle += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_S) ? -dt * 90 : 0;
         m_position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_A) ? -dt : 0;
         m_position.x += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_D) ? dt : 0;
         m_time += dt;
@@ -32,16 +34,19 @@ namespace nc {
         glRotatef(m_angle, 1, 0, 0);
         glScalef((sin(m_time) + 1) * 0.2f, 1, 1);
 
-        glBegin(GL_TRIANGLES);
+        glBegin(GL_QUADS);
 
-        glColor3f(1, 0, 0);
+        glColor3f(randomf(0, 1), randomf(0, 1), randomf(0, 1));
         glVertex2f(-0.5f, -0.5f);
         
-        glColor3f(0, 1, 0);
-        glVertex2f(randomf(-1, 1), 0.5f);
+        glColor3f(randomf(0, 1), randomf(0, 1), randomf(0, 1));
+        glVertex2f(0.5f, 0.5f);
 
-        glColor3f(0, 0, 1);
+        glColor3f(randomf(0, 1), randomf(0, 1), randomf(0, 1));
         glVertex2f(0.5f, -0.5f);
+
+        glColor3f(randomf(0, 1), randomf(0, 1), randomf(0, 1));
+        glVertex2f(-0.5f, 0.5f);
 
         glEnd();
 
