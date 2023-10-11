@@ -19,5 +19,6 @@ namespace nc {
 		
 		GLuint m_vao, m_vao2;
 		res_t<Program> m_program;
+		res_t<Texture> m_texture;
 	};
 }
