@@ -21,7 +21,13 @@ namespace nc {
              0.8f,  0.8f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
         };
 
-        GLuint vbo;
+        m_vertexBuffer = GET_RESOURCE(VertexBuffer, "vb");
+        m_vertexBuffer->CreateVertexBuffer(sizeof(vertexData), 4, vertexData);
+        m_vertexBuffer->SetAttribute(0, 3, 8 * sizeof(GLfloat), 0);
+        m_vertexBuffer->SetAttribute(1, 3, 8 * sizeof(GLfloat), 3 * sizeof(float));
+        m_vertexBuffer->SetAttribute(2, 2, 8 * sizeof(GLfloat), 6 * sizeof(float));
+
+        /*GLuint vbo;
         glGenBuffers(1, &vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
@@ -41,7 +47,7 @@ namespace nc {
 
         glEnableVertexAttribArray(2);
         glVertexAttribFormat(2, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat));
-        glVertexAttribBinding(2, 0);
+        glVertexAttribBinding(2, 0);*/
 
         //m_transform.position.z = -10.0f;
         return true;
@@ -72,9 +78,6 @@ namespace nc {
         m_program->SetUniform("tiling", glm::vec2{ 2, 2 });
 
         //model
-        //glm::mat4 position = glm::translate(glm::mat4{ 1 }, m_position);
-        //glm::mat4 rotation = glm::rotate(glm::mat4{ 1 }, glm::radians(m_angle), glm::vec3{ 0, 0, 1 });
-        //glm::mat4 model = position * rotation;
         m_program->SetUniform("model", m_transform.GetMatrix());
 
         //view
@@ -93,9 +96,7 @@ namespace nc {
         renderer.BeginFrame();
 
         // render
-        glBindVertexArray(m_vao);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
+        m_vertexBuffer->Draw(GL_TRIANGLE_STRIP);
         ENGINE.GetSystem<Gui>()->Draw();
 
         // post-render
