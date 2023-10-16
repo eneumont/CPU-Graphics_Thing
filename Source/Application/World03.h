@@ -19,6 +19,7 @@ namespace nc {
 		
 		res_t<Program> m_program;
 		res_t<Texture> m_texture;
+		res_t<Material> m_material;
 		res_t<VertexBuffer> m_vertexBuffer;
 	};
 }
