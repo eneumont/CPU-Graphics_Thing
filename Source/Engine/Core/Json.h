@@ -12,11 +12,9 @@
 #define HAS_DATA(value, data)						value.HasMember(#data)
 #define GET_DATA(value, data)						value[#data]
 
-namespace nc
-{
+namespace nc {
 	// Functions to load data from a JSON file.
-	class Json
-	{
+	class Json {
 	public:
 		static bool Load(const std::string& filename, rapidjson::Document& document);
 		static bool Read(const rapidjson::Value& value, const std::string& name, int& data, bool required = false);

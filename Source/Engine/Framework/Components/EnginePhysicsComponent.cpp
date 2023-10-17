@@ -14,6 +14,7 @@ namespace nc {
 	}
 
 	void EnginePhysicsComponent::ApplyTorque(float torque) {
+
 	}
 
 	void EnginePhysicsComponent::Read(const json_t& value) {

@@ -2,10 +2,8 @@
 #include "PhysicsComponent.h"
 #include <glm/glm/glm.hpp>
 
-namespace nc
-{
-	class EnginePhysicsComponent : public PhysicsComponent
-	{
+namespace nc {
+	class EnginePhysicsComponent : public PhysicsComponent {
 	public:
 		CLASS_DECLARATION(EnginePhysicsComponent)
 

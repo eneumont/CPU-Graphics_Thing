@@ -1,16 +1,14 @@
 #pragma once
 #include "Object.h"
 #include "Core/Core.h"
-#include "Renderer/Model.h"
+#include "Renderer/Renderer.h"
 #include "Components/Component.h"
 #include <memory>
 
-namespace nc
-{
+namespace nc {
 	// Actors are objects that hold components to define their behavior and have a transform.
 	// Actors are contained in a scene and are updated and drawn each frame.
-	class Actor : public Object
-	{
+	class Actor : public Object {
 	public:
 		CLASS_DECLARATION(Actor)
 
@@ -41,7 +39,6 @@ namespace nc
 
 		class World* m_game = nullptr;
 
-	public:
 		Transform transform;
 		std::string tag;
 		float lifespan = -1.0f;
@@ -54,10 +51,8 @@ namespace nc
 	};
 
 	template<typename T>
-	inline T* Actor::GetComponent()
-	{
-		for (auto& component : components)
-		{
+	inline T* Actor::GetComponent() {
+		for (auto& component : components) {
 			T* result = dynamic_cast<T*>(component.get());
 			if (result) return result;
 		}

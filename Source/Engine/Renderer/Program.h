@@ -5,13 +5,11 @@
 #include <glad/include/glad/glad.h>
 #include <map>
 
-namespace nc
-{
+namespace nc {
 	class Shader;
 
 	// Program class for linking shaders and setting uniforms.
-	class Program : public Resource
-	{
+	class Program : public Resource {
 	public:
 		~Program();
 
