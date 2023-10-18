@@ -9,7 +9,7 @@ namespace nc {
         auto material = GET_RESOURCE(Material, "Materials/grid.mtrl");
         m_model = std::make_shared<Model>();
         m_model->SetMaterial(material);
-        m_model->Load("Models/spot.obj");
+        m_model->Load("Models/bob.obj");
 
         return true;
     }
