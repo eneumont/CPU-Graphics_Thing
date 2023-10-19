@@ -9,7 +9,7 @@ namespace nc {
         auto material = GET_RESOURCE(Material, "Materials/grid.mtrl");
         m_model = std::make_shared<Model>();
         m_model->SetMaterial(material);
-        m_model->Load("Models/bob.obj");
+        m_model->Load("Models/bob.obj", glm::vec3{ 0 }, glm::vec3{ -90, 0, 0});
 
         return true;
     }
@@ -25,6 +25,9 @@ namespace nc {
         ImGui::DragFloat3("Position", &m_transform.position[0], 0.1f);
         ImGui::DragFloat3("Rotation", &m_transform.rotation[0]);
         ImGui::DragFloat3("Scale", &m_transform.scale[0], 0.1f);
+        ImGui::DragFloat3("Light Position", &m_light_pos[0], 0.1f);
+        ImGui::ColorEdit3("Light Color", &m_light_col[0], 0.1f);
+        ImGui::ColorEdit3("Light Ambience", &m_light_amb[0], 0.1f);
         ImGui::End();
 
         //m_transform.rotation.z += 90 * dt;
@@ -50,10 +53,13 @@ namespace nc {
         material->GetProgram()->SetUniform("view", view);
 
         //projection
-        glm::mat4 projection = glm::perspective(glm::radians(70.0f), 800.0f / 600.0f, 0.01f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(70.0f), (float ) ENGINE.GetSystem<Renderer>()->GetWidth() / ENGINE.GetSystem<Renderer>()->GetWidth(), 0.01f, 100.0f);
         material->GetProgram()->SetUniform("projection", projection);
 
         //light
+        material->GetProgram()->SetUniform("light.position", m_light_pos);
+        material->GetProgram()->SetUniform("light.color", m_light_col);
+        material->GetProgram()->SetUniform("ambientLight", m_light_amb);
 
         ENGINE.GetSystem<Gui>()->EndFrame();
     }
@@ -63,7 +69,7 @@ namespace nc {
         renderer.BeginFrame();
 
         // render
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         m_model->Draw(GL_TRIANGLES);
         ENGINE.GetSystem<Gui>()->Draw();
 
