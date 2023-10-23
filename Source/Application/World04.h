@@ -5,6 +5,20 @@
 #include <vector>
 
 namespace nc {
+	struct light_t {
+		enum eType {
+			Point,
+			Directional,
+			Spot
+		};
+
+		eType type;
+		glm::vec3 position;
+		glm::vec3 direction;
+		glm::vec3 color;
+		float cutoff;
+	};
+
 	class World04 : public World {
 	public:
 		bool Initialize() override;
@@ -21,8 +35,10 @@ namespace nc {
 		res_t<Material> m_material;
 		res_t<Model> m_model;
 
-		glm::vec3 m_light_pos = { 0.0f, 0.8f, 0.0f };
-		glm::vec3 m_light_col{ 0.5f, 0.5f, 0.5f };
+		light_t m_light;
+
+		//glm::vec3 m_light_pos = { 0.0f, 0.8f, 0.0f };
+		//glm::vec3 m_light_col{ 0.5f, 0.5f, 0.5f };
 		glm::vec3 m_light_amb { 1.0f, 1.0f, 1.0f };
 	};
 }

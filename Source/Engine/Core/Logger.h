@@ -19,10 +19,8 @@
 #define ASSERT_LOG(condition, message)		{}
 #endif // _DEBUG
 
-namespace nc
-{
-	enum class LogLevel
-	{
+namespace nc {
+	enum class LogLevel {
 		Info,
 		Warning,
 		Error,
@@ -30,10 +28,9 @@ namespace nc
 	};
 
 	// Logs streams of data into the console and/or file
-	class Logger : public Singleton<Logger>
-	{
+	class Logger : public Singleton<Logger> {
 	public:
-		Logger(LogLevel logLevel = LogLevel::Info, std::ostream* ostream = &std::cout, const std::string& filename = "log.txt") :
+		Logger(LogLevel logLevel = LogLevel::Info, std::ostream* ostream = &std::cerr, const std::string& filename = "log.txt") :
 			m_logLevel{ logLevel },
 			m_ostream{ ostream } 
 		{
@@ -53,13 +50,11 @@ namespace nc
 	};
 
 	template<typename T>
-	inline Logger& Logger::operator << (T value)
-	{
+	inline Logger& Logger::operator << (T value) {
 		// stream to console
 		if (m_ostream) *m_ostream << value;
 		// stream to file
-		if (m_fstream.is_open())
-		{
+		if (m_fstream.is_open()) {
 			m_fstream << value;
 			m_fstream.flush();
 		}
