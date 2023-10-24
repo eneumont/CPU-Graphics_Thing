@@ -12,11 +12,14 @@ namespace nc {
 			Spot
 		};
 
-		eType type;
+		int type;
 		glm::vec3 position;
 		glm::vec3 direction;
 		glm::vec3 color;
-		float cutoff;
+		float intensity;
+		float range;
+		float innerAngle;
+		float outerAngle;
 	};
 
 	class World04 : public World {
@@ -35,10 +38,12 @@ namespace nc {
 		res_t<Material> m_material;
 		res_t<Model> m_model;
 
-		light_t m_light;
+		//light_t m_light;
+		light_t m_lights[3];
+		int m_selected = 0;
 
 		//glm::vec3 m_light_pos = { 0.0f, 0.8f, 0.0f };
 		//glm::vec3 m_light_col{ 0.5f, 0.5f, 0.5f };
-		glm::vec3 m_light_amb { 1.0f, 1.0f, 1.0f };
+		glm::vec3 m_light_amb { 0.2f };
 	};
 }
