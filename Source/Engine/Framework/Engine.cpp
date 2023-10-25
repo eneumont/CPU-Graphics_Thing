@@ -13,7 +13,7 @@ namespace nc {
 			system->Initialize();
 		}
 
-		GetSystem<Renderer>()->CreateWindow("GAT350", 1000, 800);
+		GetSystem<Renderer>()->CreateWindow("GAT350", 1100, 900);
 
 		m_systems.push_back(std::move(std::make_unique<Gui>()));
 		GetSystem<Gui>()->Initialize();

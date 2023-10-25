@@ -6,13 +6,14 @@
 
 namespace nc {
     bool World04::Initialize() {
-        auto material = GET_RESOURCE(Material, "Materials/multi_grid.mtrl");
+        auto material = GET_RESOURCE(Material, "Materials/squirrel.mtrl");
         m_model = std::make_shared<Model>();
         m_model->SetMaterial(material);
         //m_model->Load("Models/plane.obj");
         //m_transform.position.y = -1;
         //m_model->Load("Models/bob.obj", glm::vec3{ 0 }, glm::vec3{ -90, 0, 0});
-        m_model->Load("Models/buddha.obj");
+        //m_model->Load("Models/buddha.obj");
+        m_model->Load("models/squirrel.glb", glm::vec3{ 0, -0.7f, 0 }, glm::vec3{ 0 }, glm::vec3{ 0.4f });
 
         for (int i = 0; i < 3; i++) {
             m_lights[i].type = light_t::eType::Point;
@@ -20,7 +21,7 @@ namespace nc {
             m_lights[i].direction = glm::vec3{ 0, -1, 0 };
             m_lights[i].color = glm::rgbColor(glm::vec3{ randomf() * 360, 1, 1 });
             m_lights[i].intensity = 1;
-            m_lights[i].range = 6;
+            m_lights[i].range = 16;
             m_lights[i].innerAngle = 10.0f;
             m_lights[i].outerAngle = 30.0f;
         }
@@ -35,10 +36,14 @@ namespace nc {
     void World04::Update(float dt) {
         ENGINE.GetSystem<Gui>()->BeginFrame();
 
-        ImGui::Begin("Transform");
-        ImGui::DragFloat3("Position", &m_transform.position[0], 0.1f);
-        ImGui::DragFloat3("Rotation", &m_transform.rotation[0]);
-        ImGui::DragFloat3("Scale", &m_transform.scale[0], 0.1f);
+        ImGui::Begin("Scene");
+        ImGui::ColorEdit3("Ambience", glm::value_ptr(m_light_amb));
+        ImGui::Separator();
+
+        for (int i = 0; i < 3; i++) {
+            std::string name = "light" + std::to_string(i);
+            if (ImGui::Selectable(name.c_str(), m_selected == i)) m_selected = i;
+        }
         ImGui::End();
 
         ImGui::Begin("Light");
@@ -55,7 +60,7 @@ namespace nc {
         ImGui::ColorEdit3("Color", &m_lights[m_selected].color[0], 0.1f);
         ImGui::DragFloat("Intensity", &m_lights[m_selected].intensity, 0.1f, 0, 10);
         if (m_lights[m_selected].type != light_t::Directional) ImGui::DragFloat("Range", &m_lights[m_selected].range, 0.1f, 0.1f, 39);
-        ImGui::ColorEdit3("Ambience", &m_light_amb[0], 0.1f);
+        //ImGui::ColorEdit3("Ambience", &m_light_amb[0], 0.1f);
         ImGui::End();
         //can do glm::value_ptr() or 
 

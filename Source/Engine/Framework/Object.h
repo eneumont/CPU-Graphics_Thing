@@ -20,11 +20,9 @@
 	classname::Register register_class;
 
 
-namespace nc
-{
+namespace nc {
 	// Base class of Actors in the engine.
-	class Object
-	{
+	class Object {
 	public:
 		Object() = default;
 		Object(const std::string& name) : name{ name } {}
@@ -36,9 +34,10 @@ namespace nc
 
 		virtual bool Initialize() { return true; }
 		virtual void OnDestroy() {}
+		virtual void ProcessGui() {}
 
-	public:
 		std::string name;
 		bool active = true;
+		bool guiSelect = false;
 	};
 }
