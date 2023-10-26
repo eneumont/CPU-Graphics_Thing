@@ -2,13 +2,11 @@
 #include "Actor.h"
 #include <list>
 
-namespace nc
-{
+namespace nc {
 	class Renderer;
 
 	// Manages Actors in the scene which can be loaded and read from a JSON file.
-	class Scene
-	{
+	class Scene {
 	public:
 		Scene() = default;
 
@@ -28,19 +26,19 @@ namespace nc
 		T* GetActorByName(const std::string& name);
 
 		void SetGame(World* game) { m_game = game; }
+		void ProcessGui();
 
 		friend class Actor;
 
+		glm::vec3 ambientColor{ 0.2f };
 	private:
 		World* m_game = nullptr;
 		std::list<std::unique_ptr<Actor>> m_actors;
 	};
 
 	template<typename T>
-	inline T* Scene::GetActor()
-	{
-		for (auto& actor : m_actors)
-		{
+	inline T* Scene::GetActor() {
+		for (auto& actor : m_actors) {
 			T* result = dynamic_cast<T*>(actor.get());
 			if (result) return result;
 		}
@@ -49,12 +47,9 @@ namespace nc
 	}
 
 	template<typename T>
-	inline T* Scene::GetActorByName(const std::string& name)
-	{
-		for (auto& actor : m_actors)
-		{
-			if (actor->name == name)
-			{
+	inline T* Scene::GetActorByName(const std::string& name) {
+		for (auto& actor : m_actors) {
+			if (actor->name == name) {
 				T* result = dynamic_cast<T*>(actor.get());
 				if (result) return result;
 			}
@@ -62,6 +57,4 @@ namespace nc
 
 		return nullptr;
 	}
-
-
 }

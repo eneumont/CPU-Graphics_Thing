@@ -12,6 +12,7 @@ namespace nc {
 		void Draw(class Renderer& renderer) override;
 
 		std::string modelName;
+		std::string materialName;
 		res_t<Model> model;
 	};
 }
