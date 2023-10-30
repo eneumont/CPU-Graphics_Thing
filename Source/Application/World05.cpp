@@ -49,6 +49,19 @@ namespace nc {
             m_scene->Add(std::move(actor));
         }
 
+        {
+            auto actor = CREATE_CLASS(Actor);
+            actor->name = "camera1";
+            actor->transform.position = glm::vec3{ 0, 0, 18 };
+            actor->transform.rotation = (glm::vec3{ 0, 180, 0 });
+
+            auto cameraComponent = CREATE_CLASS(CameraComponent);
+            cameraComponent->SetPerspective(70.0f, ENGINE.GetSystem<Renderer>()->GetWidth() / (float)ENGINE.GetSystem<Renderer>()->GetHeight(), 0.1f, 100.0f);
+            actor->AddComponent(std::move(cameraComponent));
+
+            m_scene->Add(std::move(actor));
+        }
+
         return true;
     }
 
@@ -76,14 +89,6 @@ namespace nc {
 
         material->ProcessGui();
         material->Bind();
-
-        //view
-        glm::mat4 view = glm::lookAt(glm::vec3{ 0, 0, 3 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 0, 1, 0});
-        material->GetProgram()->SetUniform("view", view);
-
-        //projection
-        glm::mat4 projection = glm::perspective(glm::radians(70.0f), (float ) ENGINE.GetSystem<Renderer>()->GetWidth() / ENGINE.GetSystem<Renderer>()->GetWidth(), 0.01f, 100.0f);
-        material->GetProgram()->SetUniform("projection", projection);
         
         material->GetProgram()->SetUniform("ambientLight", m_light_amb);
 

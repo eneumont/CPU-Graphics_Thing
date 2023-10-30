@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Framework/Components/LightComponent.h"
+#include "Framework/Components/CameraComponent.h"
 
 namespace nc {
 	bool Scene::Initialize() {
@@ -20,8 +21,14 @@ namespace nc {
 	void Scene::Draw(Renderer& renderer) {
 		// get light components
 		std::vector<LightComponent*> lights;
+		CameraComponent* camera = nullptr;
 		for (auto& actor : m_actors) {
 			if (!actor->active) continue;
+
+			camera = actor->GetComponent<CameraComponent>();
+			if (camera) {
+				break;
+			}
 
 			auto component = actor->GetComponent<LightComponent>();
 			if (component) {
@@ -36,7 +43,7 @@ namespace nc {
 			program->Use();
 
 			// set camera in shader program
-			//if (camera) camera->SetProgram(program);
+			if (camera) camera->SetProgram(program);
 
 			// set lights in shader program
 			int index = 0;

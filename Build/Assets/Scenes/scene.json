@@ -12,8 +12,8 @@
 			"components": [
 				{
 					"type": "ModelComponent",
-					"modelName": "Models/squirrel.glb",
-					"materialName": "Materials/squirrel.mtrl"
+					"modelName": "Models/cube.obj",
+					"materialName": "Materials/phong.mtrl"
 				}
 			]
 		}
