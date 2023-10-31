@@ -9,11 +9,9 @@
 	#define new DEBUG_NEW
 #endif // _DEBUG
 
-namespace nc
-{
+namespace nc {
 	// Windows memory tracker
-	class MemoryTracker
-	{
+	class MemoryTracker {
 	public:
 		static bool Initialize();
 		static void DisplayInfo();

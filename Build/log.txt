@@ -3,7 +3,3 @@ INFO: Factory.h(66) Class registered: LightComponent
 INFO: Factory.h(66) Class registered: EnginePhysicsComponent
 INFO: Factory.h(66) Class registered: CameraComponent
 INFO: Factory.h(66) Class registered: Actor
-INFO: Main.cpp(13) Initialize Engine...
-ASSERT: Renderer.cpp(154) OPENGL Source: ShaderCompiler Type: Error(0) | SHADER_ID_COMPILE error has been generated. GLSL compile failed for shader 3, "": ERROR: 0:83: ';' : syntax error syntax error
-
-
