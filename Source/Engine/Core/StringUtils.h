@@ -10,5 +10,4 @@ namespace nc {
 		static bool isEqualIgnoreCase(const std::string& s1, const std::string& s2);
 		static std::string CreateUnique(const std::string& s);
 	};
-
 }

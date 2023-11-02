@@ -33,7 +33,7 @@
 				{
 					"type": "ModelComponent",
 					"modelName": "Models/ogre.obj",
-					"materialName": "Materials/shrek.mtrl"
+					"materialName": "Materials/refraction.mtrl"
 				}
 			]
 		}
