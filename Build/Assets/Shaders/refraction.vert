@@ -11,10 +11,6 @@ uniform mat4 model;
 uniform mat4 projection;
 uniform mat4 view;
 
-//vec3 vreflect(vec3 i, vec3 n) {
-//	return i-(n*dot(i, n)) * 2;
-//}
-
 void main() {
 	//transform vertex position/normal to world space
 	vec3 position = vec3(model * vec4(vposition, 1));

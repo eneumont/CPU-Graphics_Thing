@@ -18,8 +18,6 @@ namespace nc {
             "  gl_Position = vec4(position, 1.0);"
             "}";
 
-
-
         const char* fragmentShader =
             "#version 430\n"
             "layout (location=0) in vec3 color;"
@@ -154,24 +152,6 @@ namespace nc {
         glVertexAttribFormat(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float));
         glVertexAttribBinding(1, 0);
 
-        /*GLuint vbo2[2];
-        glGenBuffers(1, vbo2);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo2[0]);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(positionData2), positionData2, GL_STATIC_DRAW);
-
-        glBindBuffer(GL_ARRAY_BUFFER, vbo2[1]);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(colorData2), colorData2, GL_STATIC_DRAW);
-
-        glGenVertexArrays(1, &m_vao2);
-        glBindVertexArray(m_vao2);
-
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glBindVertexBuffer(0, vbo2[0], 0, 3 * sizeof(GLfloat));
-
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glBindVertexBuffer(1, vbo2[1], 0, 3 * sizeof(GLfloat));*/
 #else
         //vertex data
         float positionData[] = {
@@ -237,7 +217,6 @@ namespace nc {
         glBindVertexBuffer(1, vbo2[1], 0, 3 * sizeof(GLfloat));
 
 #endif
-
         return true;
     }
 
@@ -266,10 +245,6 @@ namespace nc {
 #else
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 #endif
-
-        /*glBindVertexArray(m_vao2);
-        glDrawArrays(GL_TRIANGLES, 0, 3);*/
-
         // post-render
         renderer.EndFrame();
     }

@@ -6,9 +6,8 @@
 
 namespace nc {
     bool World04::Initialize() {
-        auto material = GET_RESOURCE(Material, "Materials/squirrel.mtrl");
+        m_material = GET_RESOURCE(Material, "Materials/squirrel.mtrl");
         m_model = std::make_shared<Model>();
-        m_model->SetMaterial(material);
         //m_model->Load("Models/plane.obj");
         //m_transform.position.y = -1;
         //m_model->Load("Models/bob.obj", glm::vec3{ 0 }, glm::vec3{ -90, 0, 0});
@@ -72,39 +71,37 @@ namespace nc {
         m_transform.position.z += ENGINE.GetSystem<InputSystem>()->GetKeyDown(SDL_SCANCODE_S) ? m_speed * dt : 0;
         m_time += dt;
 
-        auto material = m_model->GetMaterial();
-
-        material->ProcessGui();
-        material->Bind();
+        m_material->ProcessGui();
+        m_material->Bind();
         /*m_program->SetUniform("offset", glm::vec2{ 0, 0 });
         m_program->SetUniform("tiling", glm::vec2{ 2, 2 });*/
 
         //model
-        material->GetProgram()->SetUniform("model", m_transform.GetMatrix());
+        m_material->GetProgram()->SetUniform("model", m_transform.GetMatrix());
 
         //view
         glm::mat4 view = glm::lookAt(glm::vec3{ 0, 0, 3 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 0, 1, 0});
-        material->GetProgram()->SetUniform("view", view);
+        m_material->GetProgram()->SetUniform("view", view);
 
         //projection
         glm::mat4 projection = glm::perspective(glm::radians(70.0f), (float ) ENGINE.GetSystem<Renderer>()->GetWidth() / ENGINE.GetSystem<Renderer>()->GetWidth(), 0.01f, 100.0f);
-        material->GetProgram()->SetUniform("projection", projection);
+        m_material->GetProgram()->SetUniform("projection", projection);
 
         //light
         for (int i = 0; i < 3; i++) {
             std::string name = "lights[" + std::to_string(i) + "]";
 
-            material->GetProgram()->SetUniform(name + ".type", m_lights[i].type);
-            material->GetProgram()->SetUniform(name + ".position", m_lights[i].position);
-            material->GetProgram()->SetUniform(name + ".direction", glm::normalize(m_lights[i].direction));
-            material->GetProgram()->SetUniform(name + ".color", m_lights[i].color);
-            material->GetProgram()->SetUniform(name + ".intensity", m_lights[i].intensity);
-            material->GetProgram()->SetUniform(name + ".range", m_lights[i].range);
-            material->GetProgram()->SetUniform(name + ".innerAngle", glm::radians(m_lights[i].innerAngle));
-            material->GetProgram()->SetUniform(name + ".outerAngle", glm::radians(m_lights[i].outerAngle));
+            m_material->GetProgram()->SetUniform(name + ".type", m_lights[i].type);
+            m_material->GetProgram()->SetUniform(name + ".position", m_lights[i].position);
+            m_material->GetProgram()->SetUniform(name + ".direction", glm::normalize(m_lights[i].direction));
+            m_material->GetProgram()->SetUniform(name + ".color", m_lights[i].color);
+            m_material->GetProgram()->SetUniform(name + ".intensity", m_lights[i].intensity);
+            m_material->GetProgram()->SetUniform(name + ".range", m_lights[i].range);
+            m_material->GetProgram()->SetUniform(name + ".innerAngle", glm::radians(m_lights[i].innerAngle));
+            m_material->GetProgram()->SetUniform(name + ".outerAngle", glm::radians(m_lights[i].outerAngle));
         }
         
-        material->GetProgram()->SetUniform("ambientLight", m_light_amb);
+        m_material->GetProgram()->SetUniform("ambientLight", m_light_amb);
 
         ENGINE.GetSystem<Gui>()->EndFrame();
     }
@@ -115,7 +112,8 @@ namespace nc {
 
         // render
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        m_model->Draw(GL_TRIANGLES);
+        m_material->Bind();
+        m_model->Draw();
         ENGINE.GetSystem<Gui>()->Draw();
 
         // post-render

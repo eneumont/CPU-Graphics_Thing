@@ -42,8 +42,6 @@ namespace nc {
 		light_t m_lights[3];
 		int m_selected = 0;
 
-		//glm::vec3 m_light_pos = { 0.0f, 0.8f, 0.0f };
-		//glm::vec3 m_light_col{ 0.5f, 0.5f, 0.5f };
 		glm::vec3 m_light_amb { 0.2f };
 	};
 }

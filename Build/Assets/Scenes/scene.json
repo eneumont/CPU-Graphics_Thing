@@ -23,9 +23,9 @@
 			"type": "Actor",
 			"name": "actor1",
 			"persistent": true,
-			"active": false,
+			"active": true,
 			"transform": {
-				"position": [ 0, 0, 1 ],
+				"position": [ 1, 0, 0 ],
 				"scale": [ 1, 1, 1 ],
 				"rotation": [ 0, 0, 0 ]
 			},
@@ -34,6 +34,42 @@
 					"type": "ModelComponent",
 					"modelName": "Models/ogre.obj",
 					"materialName": "Materials/refraction.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "actor2",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, 0, 0 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/ogre.obj",
+					"materialName": "Materials/reflection.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "actor3",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ -1, 0, 0 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/ogre.obj",
+					"materialName": "Materials/phong.mtrl"
 				}
 			]
 		}
