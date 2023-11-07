@@ -23,7 +23,7 @@
 			"type": "Actor",
 			"name": "actor1",
 			"persistent": true,
-			"active": true,
+			"active": false,
 			"transform": {
 				"position": [ 1, 0, 0 ],
 				"scale": [ 1, 1, 1 ],
@@ -41,7 +41,7 @@
 			"type": "Actor",
 			"name": "actor2",
 			"persistent": true,
-			"active": true,
+			"active": false,
 			"transform": {
 				"position": [ 0, 0, 0 ],
 				"scale": [ 1, 1, 1 ],
@@ -70,6 +70,43 @@
 					"type": "ModelComponent",
 					"modelName": "Models/ogre.obj",
 					"materialName": "Materials/phong.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "sprite",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 1, 0, 1 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/quad.obj",
+					"materialName": "Materials/sprite.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "tree",
+			"persistent": true,
+			"active": true,
+			"prototype": true,
+			"transform": {
+				"position": [ 0, 0, 1 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/quad.obj",
+					"materialName": "Materials/tree.mtrl"
 				}
 			]
 		}

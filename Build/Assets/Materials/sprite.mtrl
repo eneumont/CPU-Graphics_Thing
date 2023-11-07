@@ -1,0 +1,11 @@
+{
+  "program": "Shaders/unlit_sprite.prog",
+  "albedoTexture": "Textures/kirby.jpg",
+  "albedo": [
+    1,
+    1,
+    1
+  ],
+  "tiling": [ 1, 1 ],
+  "offset": [ 0, 0 ]
+}

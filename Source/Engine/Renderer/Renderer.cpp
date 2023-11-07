@@ -61,6 +61,7 @@ namespace nc {
 	}
 
 	void Renderer::BeginFrame() {
+		glDepthMask(GL_TRUE);
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
@@ -87,6 +88,14 @@ namespace nc {
 
 	void Renderer::DrawPoint(float x, float y) {
 		SDL_RenderDrawPointF(m_renderer, x, y);
+	}
+
+	void Renderer::SetViewPoint(int width, int height) {
+		glViewport(0, 0, width, height);
+	}
+
+	void Renderer::ResetViewPoint() {
+		glViewport(0, 0, m_width, m_height);
 	}
 
 	void APIENTRY DebugCallback(GLenum source, GLenum type, GLuint id,
