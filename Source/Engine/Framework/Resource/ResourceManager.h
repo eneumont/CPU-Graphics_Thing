@@ -8,6 +8,7 @@
 #include <vector>
 
 #define GET_RESOURCE(type, filename, ...) nc::ResourceManager::Instance().Get<type>(filename, __VA_ARGS__)
+#define ADD_RESOURCE(name, resource) nc::ResourceManager::Instance().Add(name, resource)
 
 namespace nc {
 	// ResourceManager - Stores all currently loaded resources in a map
@@ -15,6 +16,9 @@ namespace nc {
 	// if the resource isn't in thre map, it is loaded/created and placed in the map
 	class ResourceManager : public Singleton<ResourceManager> {
 	public:
+		template<typename T>
+		bool Add(std::string& name, res_t<T> resource);
+		
 		template<typename T, typename ... TArgs>
 		res_t<T> Get(const std::string& filename, TArgs ... args);
 
@@ -24,6 +28,18 @@ namespace nc {
 	private:
 		std::map<std::string, res_t<Resource>> m_resources;
 	};
+
+	template<typename T>
+	inline bool ResourceManager::Add(std::string& name, res_t<T> resource) {
+		if (m_resources.find(name) != m_resources.end()) {
+			WARNING_LOG("Could not create resource: " << name);
+			return false;
+		}
+
+		m_resources[name] = resource;
+		
+		return true;
+	}
 
 	template<typename T, typename ...TArgs>
 	inline res_t<T> ResourceManager::Get(const std::string& filename, TArgs ...args) {
@@ -42,7 +58,9 @@ namespace nc {
 		}
 
 		// add resource to resource map, return resource
-		m_resources[filename] = resource;
+		//m_resources[filename] = resource;
+		Add(filename, resource);
+
 		return resource;
 	}
 
