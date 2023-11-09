@@ -1,11 +1,14 @@
 #pragma once
-#include "Components/Component.h"
+#include "Component.h"
 
 namespace nc {
-	class RotateComponent : Component {
+	class RotateComponent : public Component {
 	public:
 		CLASS_DECLARATION(RotateComponent)
 
-		bool Initalize() override;
+		void ProcessGui() override;
+		void Update(float dt) override;
+
+		glm::vec3 euler{ 0 };
 	};
 }

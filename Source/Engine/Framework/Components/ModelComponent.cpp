@@ -41,6 +41,5 @@ namespace nc {
 		if (READ_NAME_DATA(value, "cullface", cullfaceName)) {
 			if (StringUtils::isEqualIgnoreCase(cullfaceName, "front")) cullface = GL_FRONT;
 		}
-		
 	}
 }

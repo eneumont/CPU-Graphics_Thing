@@ -5,7 +5,6 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-
 namespace nc {
 	bool Model::Create(std::string filename, ...) {
 		// TODO load json model file

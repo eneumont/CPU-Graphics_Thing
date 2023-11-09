@@ -105,7 +105,6 @@ namespace nc {
 				}
 			}
 		}
-
 	}
 
 	void Scene::ProcessGui() {
