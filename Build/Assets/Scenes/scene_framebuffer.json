@@ -15,6 +15,10 @@
 					"type": "ModelComponent",
 					"modelName": "Models/ogre.obj",
 					"materialName": "Materials/shrek.mtrl"
+				},
+				{
+					"type": "RotateComponent",
+					"euler": [ 0, 0, 1]
 				}
 			]
 		},
@@ -85,20 +89,15 @@
 		},
 		{
 			"type": "Actor",
-			"name": "cube",
+			"name": "postprocess",
 			"persistent": true,
 			"active": true,
 			"prototype": false,
-			"transform": {
-				"position": [ 0, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
-			},
 			"components": [
 				{
 					"type": "ModelComponent",
-					"modelName": "Models/cube.obj",
-					"materialName": "Materials/framebuffer.mtrl"
+					"modelName": "Models/quad.obj",
+					"materialName": "Materials/postprocess.mtrl"
 				}
 			]
 		}
