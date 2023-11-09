@@ -6,9 +6,21 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ -1, 0, 0 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					-1,
+					0,
+					0
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
@@ -18,7 +30,11 @@
 				},
 				{
 					"type": "RotateComponent",
-					"euler": [ 0, 0, 1]
+					"euler": [
+						0,
+						0,
+						1
+					]
 				}
 			]
 		},
@@ -27,19 +43,35 @@
 			"name": "light1",
 			"active": true,
 			"transform": {
-				"position": [ 3, 3, 3 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					3,
+					3,
+					3
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
 					"type": "LightComponent",
 					"lightType": "point",
-					"color": [ 1, 1, 1 ],
+					"color": [
+						1,
+						1,
+						1
+					],
 					"intensity": 1,
 					"range": 20,
 					"innerAngle": 10.0,
-					"outerAngle":  30.0
+					"outerAngle": 30.0
 				}
 			]
 		},
@@ -48,9 +80,21 @@
 			"name": "camera1",
 			"active": true,
 			"transform": {
-				"position": [ 0, 0, 3 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 180, 0 ]
+				"position": [
+					0,
+					0,
+					3
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					180,
+					0
+				]
 			},
 			"components": [
 				{
@@ -58,14 +102,14 @@
 					"fov": 70.0,
 					"aspect": 1,
 					"near": 0.1,
-					"far": 100.0,
+					"far": 100.0
 				},
 				{
 					"type": "CameraController",
 					"speed": 5,
 					"sensitivity": 0.5,
 					"yaw": 0,
-					"pitch":  0
+					"pitch": 0
 				}
 			]
 		},
@@ -75,9 +119,21 @@
 			"persistent": true,
 			"active": true,
 			"transform": {
-				"position": [ 1, 0, 1 ],
-				"scale": [ 1, 1, 1 ],
-				"rotation": [ 0, 0, 0 ]
+				"position": [
+					1,
+					0,
+					1
+				],
+				"scale": [
+					1,
+					1,
+					1
+				],
+				"rotation": [
+					0,
+					0,
+					0
+				]
 			},
 			"components": [
 				{
