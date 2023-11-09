@@ -20,6 +20,53 @@
 		},
 		{
 			"type": "Actor",
+			"name": "light1",
+			"active": true,
+			"transform": {
+				"position": [ 3, 3, 3 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "LightComponent",
+					"lightType": "point",
+					"color": [ 1, 1, 1 ],
+					"intensity": 1,
+					"range": 20,
+					"innerAngle": 10.0,
+					"outerAngle":  30.0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "camera1",
+			"active": true,
+			"transform": {
+				"position": [ 0, 0, 3 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 180, 0 ]
+			},
+			"components": [
+				{
+					"type": "CameraComponent",
+					"fov": 70.0,
+					"aspect": 1,
+					"near": 0.1,
+					"far": 100.0,
+				},
+				{
+					"type": "CameraController",
+					"speed": 5,
+					"sensitivity": 0.5,
+					"yaw": 0,
+					"pitch":  0
+				}
+			]
+		},
+		{
+			"type": "Actor",
 			"name": "sprite",
 			"persistent": true,
 			"active": true,

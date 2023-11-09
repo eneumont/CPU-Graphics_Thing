@@ -15,7 +15,7 @@
 					"modelName": "Models/cube.obj",
 					"materialName": "Materials/skybox.mtrl",
 					"enableDepth": false,
-					"cullface":  "front"
+					"cullface": "front"
 				}
 			]
 		},
