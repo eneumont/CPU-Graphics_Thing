@@ -7,7 +7,7 @@
 			"active": true,
 			"transform": {
 				"position": [
-					-1,
+					0,
 					0,
 					0
 				],
@@ -110,36 +110,6 @@
 					"sensitivity": 0.5,
 					"yaw": 0,
 					"pitch": 0
-				}
-			]
-		},
-		{
-			"type": "Actor",
-			"name": "sprite",
-			"persistent": true,
-			"active": true,
-			"transform": {
-				"position": [
-					1,
-					0,
-					1
-				],
-				"scale": [
-					1,
-					1,
-					1
-				],
-				"rotation": [
-					0,
-					0,
-					0
-				]
-			},
-			"components": [
-				{
-					"type": "ModelComponent",
-					"modelName": "Models/quad.obj",
-					"materialName": "Materials/sprite.mtrl"
 				}
 			]
 		},

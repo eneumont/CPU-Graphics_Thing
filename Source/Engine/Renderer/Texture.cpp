@@ -81,11 +81,4 @@ namespace nc {
 
 		return true;
 	}
-
-	/*vec2 Texture::GetSize() {
-		SDL_Point point;
-		SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
-
-		return vec2{ point.x, point.y };
-	}*/
 }

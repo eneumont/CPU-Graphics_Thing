@@ -23,41 +23,6 @@ namespace nc {
             material->albedoTexture = texture;
         }
 
-        //{
-        //    auto actor = CREATE_CLASS(Actor);
-        //    actor->name = "light1";
-        //    actor->transform.position = glm::vec3{ 3, 3, 3 };
-        //    auto lightComponent = CREATE_CLASS(LightComponent);
-        //    lightComponent->type = LightComponent::eType::Point;
-        //    lightComponent->color = glm::vec3{ 1, 1, 1};//glm::rgbColor(glm::vec3{ randomf() * 360, 1, 1 });
-        //    lightComponent->intensity = 1;
-        //    lightComponent->range = 20;
-        //    lightComponent->innerAngle = 10.0f;
-        //    lightComponent->outerAngle = 30.0f;
-        //    actor->AddComponent(std::move(lightComponent));
-        //    m_scene->Add(std::move(actor));
-        //}
-
-        //{
-        //    auto actor = CREATE_CLASS(Actor);
-        //    actor->name = "camera1";
-        //    actor->transform.position = glm::vec3{ 0, 0, 3 };
-        //    actor->transform.rotation = glm::radians((glm::vec3{ 0, 180, 0 }));
-
-        //    auto cameraComponent = CREATE_CLASS(CameraComponent);
-        //    cameraComponent->SetPerspective(70.0f, ENGINE.GetSystem<Renderer>()->GetWidth() / (float)ENGINE.GetSystem<Renderer>()->GetHeight(), 0.1f, 100.0f);
-        //    actor->AddComponent(std::move(cameraComponent));
-
-        //    auto cameraController = CREATE_CLASS(CameraController);
-        //    cameraController->speed = 5;
-        //    cameraController->sensitivity = 0.5f;
-        //    cameraController->m_owner = actor.get();
-        //    cameraController->Initialize();
-        //    actor->AddComponent(std::move(cameraController));
-
-        //    m_scene->Add(std::move(actor));
-        //}
-
         return true;
     }
 
@@ -77,23 +42,9 @@ namespace nc {
         ImGui::Begin("Post-Process");
         ImGui::SliderFloat("Blend", &m_blend, 0, 1);
         bool effect = m_params & INVERT_MASK;
-        if (ImGui::Checkbox("Invert", &effect)) {
-            // 0001 - mask
-            // 0101 - params
-            // --------------
-            // 0100
-            // ????
-            (effect) ? m_params |= INVERT_MASK : m_params ^= INVERT_MASK;
-        }
+        if (ImGui::Checkbox("Invert", &effect)) (effect) ? m_params |= INVERT_MASK : m_params &= INVERT_MASK;
         effect = m_params & GRAYSCALE_MASK;
-        if (ImGui::Checkbox("Grayscale", &effect)) {
-            // 0001 - mask
-            // 0101 - params
-            // --------------
-            // 0100
-            // ????
-            (effect) ? m_params |= GRAYSCALE_MASK : m_params ^= GRAYSCALE_MASK;
-        }
+        if (ImGui::Checkbox("Grayscale", &effect)) (effect) ? m_params |= GRAYSCALE_MASK : m_params &= GRAYSCALE_MASK;
         ImGui::End();
 
         //set postpeocess shader
