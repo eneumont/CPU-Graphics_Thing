@@ -14,13 +14,12 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	INFO_LOG("Initialize Engine...")
 
-	//nc::MemoryTracker::Initialize();
 	nc::seedRandom((unsigned int)time(nullptr));
 	nc::setFilePath("assets");
 
 	ENGINE.Initialize();
 
-	auto world = make_unique<nc::World07>();
+	auto world = make_unique<nc::World06>();
 	world->Initialize();
 
 	// main loop

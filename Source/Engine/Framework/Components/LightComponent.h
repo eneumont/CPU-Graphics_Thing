@@ -13,6 +13,8 @@ namespace nc {
 
 		void ProcessGui() override;
 
+		glm::mat4 GetShadowMatrix();
+
 		enum eType {
 			Point,
 			Directional,
@@ -25,5 +27,9 @@ namespace nc {
 		float range = 20;
 		float innerAngle = 20;
 		float outerAngle = 30;
+
+		bool castShadow = false;
+		float shadowSize = 10;
+		float shadowBias = 0.005f; //
 	};
 }

@@ -20,24 +20,16 @@ namespace nc {
 
 	void Scene::Draw(Renderer& renderer) {
 		// get light components
-		std::vector<LightComponent*> lights;
-		CameraComponent* camera = nullptr;
-		for (auto& actor : m_actors) {
-			if (!actor->active) continue;
+		auto lights = GetComponents<LightComponent>();
+		
+		// get camera components
+		auto cameras = GetComponents<CameraComponent>();
 
-			camera = actor->GetComponent<CameraComponent>();
-			if (camera) {
-				break;
-			}
-
-			auto component = actor->GetComponent<LightComponent>();
-			if (component) {
-				lights.push_back(component);
-			}
-		}
+		// get first active camera component
+		CameraComponent* camera = (!cameras.empty()) ? cameras[0] : nullptr;
 
 		// get all shader programs in the resource system
-		auto programs = ResourceManager::Instance().GetAllOfType<Program>();
+		auto programs = GET_RESOURCES(Program);
 		// set all shader programs camera and lights uniforms
 		for (auto& program : programs) {
 			program->Use();
@@ -99,8 +91,7 @@ namespace nc {
 				if (actor->prototype) {
 					std::string name = actor->name;
 					Factory::Instance().RegisterPrototype(name, std::move(actor));
-				}
-				else {
+				} else {
 					Add(std::move(actor));
 				}
 			}
