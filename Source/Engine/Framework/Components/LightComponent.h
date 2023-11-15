@@ -30,6 +30,6 @@ namespace nc {
 
 		bool castShadow = false;
 		float shadowSize = 10;
-		float shadowBias = 0.005f; //
+		float shadowBias = 0.005f; 
 	};
 }

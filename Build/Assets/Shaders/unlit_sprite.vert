@@ -28,6 +28,6 @@ void main() {
 	//set vertex position (local) using world position and view direction
 	position = position + (vposition.x * right * size.x) + (vposition.y * up * size.y);
 
-	mat4 mvp = projection * view;
-	gl_Position = mvp * vec4(position, 1.0);
+	mat4 vp = projection * view;
+	gl_Position = vp * vec4(position, 1.0);
 }

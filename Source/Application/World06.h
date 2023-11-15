@@ -27,6 +27,9 @@ namespace nc {
 		const uint32_t INVERT_MASK = (1 << 0);
 		const uint32_t GRAYSCALE_MASK = (1 << 1);
 		const uint32_t COLORTINT_MASK = (1 << 2);
+		const uint32_t GRAIN_MASK = (1 << 3);
+		const uint32_t SCANLINE_MASK = (1 << 4);
+		const uint32_t CUSTOM_MASK = (1 << 5);
 
 		bool Initialize() override;
 		void Shutdown() override;
@@ -42,5 +45,6 @@ namespace nc {
 
 		float m_refraction{ 1.0f };
 		glm::vec3 m_light_amb { 0.2f };
+		glm::vec4 m_tint{ 255, 255, 255, 1 };
 	};
 }

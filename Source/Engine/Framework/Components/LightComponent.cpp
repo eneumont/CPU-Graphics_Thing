@@ -22,15 +22,21 @@ namespace nc {
 		program->SetUniform(name + ".innerAngle", glm::radians(innerAngle));
 		program->SetUniform(name + ".outerAngle", glm::radians(outerAngle));
 
-		if (castShadow) program->SetUniform("shadowVP", GetShadowMatrix());
+		if (castShadow) {
+			glm::mat4 bias = glm::mat4(
+				glm::vec4(0.5f, 0.0f, 0.0f, 0.0f),
+				glm::vec4(0.0f, 0.5f, 0.0f, 0.0f),
+				glm::vec4(0.0f, 0.0f, 0.5f, 0.0f),
+				glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+
+			program->SetUniform("shadowVP", GetShadowMatrix());
+			program->SetUniform("shadowBias", shadowBias);
+		}
 	}
 
 	void LightComponent::ProcessGui() {
 		const char* types[] = { "Point", "Directional", "Spot" };
 		ImGui::Combo("Type", (int*)(&type), types, 3);
-
-		//if (type != Directional) ImGui::DragFloat3("Position", glm::value_ptr(m_lights[m_selected].position), 0.1f);
-		//if (type != Point) ImGui::DragFloat3("Direction", glm::value_ptr(m_lights[m_selected].direction), 0.1f);
 		if (type == Spot) {
 			ImGui::DragFloat("Inner Angle", &innerAngle, 1, 0, outerAngle);
 			ImGui::DragFloat("Outer Angle", &outerAngle, 1, innerAngle, 90);
@@ -41,7 +47,10 @@ namespace nc {
 		if (type != Directional) ImGui::DragFloat("Range", &range, 0.1f, 0.1f, 50);
 
 		ImGui::Checkbox("Cast Shadow", &castShadow);
-		if (castShadow) ImGui::DragFloat("Shadow Size", &shadowSize, 0.1f, 0, 60);
+		if (castShadow) {
+			ImGui::DragFloat("Shadow Size", &shadowSize, 0.1f, 0, 60);
+			ImGui::DragFloat("Shadow Bias", &shadowBias, 0.001f, 0, 1);
+		}
 	}
 
 	glm::mat4 LightComponent::GetShadowMatrix() {

@@ -12,6 +12,7 @@ out layout(location = 0) vec4 ocolor;
 
 uniform float blend = 1;
 uniform uint params = 0;
+uniform vec4 tint = { 1, 1, 1, 1 };
 
 layout(binding = 0) uniform sampler2D screenTexture;
 
@@ -28,15 +29,16 @@ vec4 grayscale(in vec4 color) {
 }
 
 vec4 colorTint(in vec4 color) {
-	return color;
+	return color * tint;
 }
 
 vec4 grain(in vec4 color) {
-	return color;
+	vec3 noisyColor = color.rgb + 0.5 * (2.0 * fract(sin(dot(gl_FragCoord.xyz, vec3(12.9898, 78.233, 45.5433))) * 43758.5453) - 1.0);
+	return vec4(noisyColor, color.a);
 }
 
 vec4 scanline(in vec4 color) {
-	return color;
+	return (int(gl_FragCoord.y) % 5 != 0) ? vec4(0, 0, 0, color.a) : color;
 }
 
 vec4 custom(in vec4 color) {
