@@ -81,7 +81,7 @@
 			"name": "light1",
 			"active": true,
 			"transform": {
-				"position": [ 0, 2, 0 ],
+				"position": [ 0, 4, 0 ],
 				"scale": [ 0.1, 0.1, 0.1 ],
 				"rotation": [ 60, 30, 0 ]
 			},
@@ -108,7 +108,7 @@
 			"name": "camera1",
 			"active": true,
 			"transform": {
-				"position": [ 0, 3, 3 ],
+				"position": [ 0, 1, 4 ],
 				"scale": [ 1, 1, 1 ],
 				"rotation": [ 0, 180, 0 ]
 			},

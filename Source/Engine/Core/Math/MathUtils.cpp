@@ -33,8 +33,7 @@ namespace nc {
         return euler;
     }
 
-    glm::quat nc::EulerToQuaternion(const glm::vec3& euler)
-    {
+    glm::quat nc::EulerToQuaternion(const glm::vec3& euler) {
         float xOver2 = glm::radians(euler.x) * 0.5f;
         float yOver2 = glm::radians(euler.y) * 0.5f;
         float zOver2 = glm::radians(euler.z) * 0.5f;
