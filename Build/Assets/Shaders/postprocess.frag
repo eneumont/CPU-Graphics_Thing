@@ -33,8 +33,7 @@ vec4 colorTint(in vec4 color) {
 }
 
 vec4 grain(in vec4 color) {
-	vec3 noisyColor = color.rgb + 0.5 * (2.0 * fract(sin(dot(gl_FragCoord.xyz, vec3(12.9898, 78.233, 45.5433))) * 43758.5453) - 1.0);
-	return vec4(noisyColor, color.a);
+	return vec4(color.rgb + 0.5 * (2.0 * fract(sin(dot(gl_FragCoord.xyz, vec3(12.9898, 78.233, 45.5433))) * 43758.5453) - 1.0), color.a);
 }
 
 vec4 scanline(in vec4 color) {
@@ -42,7 +41,8 @@ vec4 scanline(in vec4 color) {
 }
 
 vec4 custom(in vec4 color) {
-	return color;
+	//invert + colortint + grain
+	return vec4(vec3(1) - color.rgb + 0.5 * (2.0 * fract(sin(dot(gl_FragCoord.xyz, vec3(12.9898, 78.233, 45.5433))) * 43758.5453) - 1.0), color.a) * tint;
 }
 
 void main() {

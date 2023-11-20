@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
 
-namespace nc
-{
+namespace nc {
 	class Scene;
 	class Renderer;
+	class Editor;
 
 	// An abstract class that contains the scene and methods to initialize, shutdown, update and draw the world.
-	class World
-	{
+	class World {
 	public:
 		World() = default;
 		virtual ~World() = default;
@@ -24,5 +23,6 @@ namespace nc
 	protected:
 		bool m_quit = false;
 		std::unique_ptr<Scene> m_scene;
+		std::unique_ptr<Editor> m_editor;
 	};
 }
