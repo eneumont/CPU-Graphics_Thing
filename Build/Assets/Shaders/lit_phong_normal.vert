@@ -14,6 +14,8 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
+uniform mat4 shadowVP;
+
 uniform struct Material {
 	uint params;
 	vec3 albedo;

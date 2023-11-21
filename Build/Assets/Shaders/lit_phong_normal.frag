@@ -11,7 +11,8 @@
 
 in layout(location = 0) vec3 fposition;
 in layout(location = 1) vec2 ftexcoord;
-in layout(location = 2) mat3 ftbn;
+in layout(location = 2) vec4 fshadowcoord;
+in layout(location = 3) mat3 ftbn;
 
 out layout(location = 0) vec4 ocolor;
 
@@ -19,6 +20,7 @@ layout(binding = 0) uniform sampler2D albedoTexture;
 layout(binding = 1) uniform sampler2D specularTexture;
 layout(binding = 2) uniform sampler2D normalTexture;
 layout(binding = 3) uniform sampler2D emissiveTexture;
+layout(binding = 4) uniform sampler2D shadowTexture;
 
 uniform struct Material {
 	uint params;
@@ -61,7 +63,6 @@ void phong(in Light light, in vec3 position, in vec3 normal, out vec3 diffuse, o
 	float spotIntensity = 1;
 	if (light.type == SPOT) {
 		float angle = acos(dot(light.direction, -lightDir));
-		//if (angle > light.innerAngle) spotIntensity = 0;
 		spotIntensity = smoothstep(light.outerAngle + 0.001, light.innerAngle, angle);
 	}
 	
@@ -87,7 +88,6 @@ void main() {
 	//set ambient light + emissive color
 	ocolor = vec4(ambientLight, 1) * albedoColor + emissiveColor;
  
- 
 	for (int i = 0; i < numLights; i++) {
 		vec3 diffuse;
 		vec3 specular;
@@ -101,5 +101,4 @@ void main() {
 		phong(lights[i], fposition, normal, diffuse, specular);
 		ocolor += ((vec4(diffuse, 1) * albedoColor) + vec4(specular, 1) * specularColor) * attenuation * lights[i].intensity;
 	}
-	
 }
