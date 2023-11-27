@@ -1,0 +1,133 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "door",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, 0, 0 ],
+				"scale": [ 0.1, 0.1, 0.1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Fantasy/obj/SF_Bld_Castle_Door_01.obj",
+					"materialName": "Fantasy/fantasy.mtrl"
+				},
+				{
+					"type": "RotateComponent",
+					"euler": [ 0, 30, 0]
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "banner",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 1, 0, 0 ],
+				"scale": [ 0.1, 0.1, 0.1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Fantasy/obj/SF_Bld_Castle_Banner_01.obj",
+					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "ground",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ -5, 0, 2 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Fantasy/obj/SF_Env_Tile_Grass_01.obj",
+					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "depth_debug",
+			"persistent": true,
+			"active":  false,
+			"transform": {
+				"position": [ 2.4, 1.4, 0 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/quad.obj",
+					"materialName": "Materials/sprite.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "light1",
+			"active": true,
+			"transform": {
+				"position": [ 0, 4, 0 ],
+				"scale": [ 0.1, 0.1, 0.1 ],
+				"rotation": [ 60, 30, 0 ]
+			},
+			"components": [
+				{
+					"type": "LightComponent",
+					"lightType": "directional",
+					"color": [ 1, 1, 1 ],
+					"intensity": 1,
+					"range": 20,
+					"innerAngle": 10.0,
+					"outerAngle": 30.0,
+					"castShadow": true
+				},
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/quad.obj",
+					"materialName": "Materials/ui_light.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "camera1",
+			"active": true,
+			"transform": {
+				"position": [ 0, 1, 4 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 180, 0 ]
+			},
+			"components": [
+				{
+					"type": "CameraComponent",
+					"fov": 70.0,
+					"aspect": 1,
+					"near": 0.1,
+					"far": 100.0
+				},
+				{
+					"type": "CameraController",
+					"speed": 5,
+					"sensitivity": 0.5,
+					"yaw": 0,
+					"pitch": 0
+				}
+			]
+		}
+	]
+}

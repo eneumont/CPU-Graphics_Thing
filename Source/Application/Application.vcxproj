@@ -186,9 +186,12 @@
     <None Include="..\..\Build\Assets\Materials\tree.mtrl" />
     <None Include="..\..\Build\Assets\Materials\ui_light.mtrl" />
     <None Include="..\..\Build\Assets\Scenes\scene.json" />
+    <None Include="..\..\Build\Assets\Scenes\scene_cel.json" />
     <None Include="..\..\Build\Assets\Scenes\scene_editor.json" />
     <None Include="..\..\Build\Assets\Scenes\scene_framebuffer.json" />
     <None Include="..\..\Build\Assets\Scenes\scene_shadow.json" />
+    <None Include="..\..\Build\Assets\Shaders\cel.frag" />
+    <None Include="..\..\Build\Assets\Shaders\cel.prog" />
     <None Include="..\..\Build\Assets\Shaders\cubemap.frag" />
     <None Include="..\..\Build\Assets\Shaders\lit_phong.frag" />
     <None Include="..\..\Build\Assets\Shaders\lit_phong.prog" />
