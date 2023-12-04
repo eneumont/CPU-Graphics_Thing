@@ -4,10 +4,8 @@
 #include <iostream>
 #include <string>
 
-namespace nc
-{
-	class Color
-	{
+namespace nc {
+	class Color {
 	public:
 		float r, g, b, a;
 
@@ -21,8 +19,7 @@ namespace nc
 		static uint8_t ToInt(float c) { return static_cast<uint8_t>(Clamp(c, 0.0f, 1.0f) * 255); }
 	};
 
-	inline std::istream& operator >> (std::istream& stream, Color& color)
-	{
+	inline std::istream& operator >> (std::istream& stream, Color& color) {
 		std::string line;
 		std::getline(stream, line);
 

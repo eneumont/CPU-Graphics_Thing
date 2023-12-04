@@ -3,12 +3,12 @@
 in layout(location = 0) vec3 vposition;
 in layout(location = 1) vec2 vtexcoord;
 in layout(location = 2) vec3 vnormal;
-in layout(location = 3) vec3 vtangent;
 
 out layout(location = 0) vec3 oposition;
-out layout(location = 1) vec2 otexcoord;
-out layout(location = 2) vec4 oshadowcoord;
-out layout(location = 3) mat3 otbn;
+out layout(location = 1) vec3 onormal;
+out layout(location = 2) vec2 otexcoord;
+out layout(location = 3) vec4 oshadowcoord;
+out layout(location = 4) vec3 oviewdir;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -28,23 +28,17 @@ uniform struct Material {
 } material;
 
 void main() {
-	otexcoord = vtexcoord * material.tiling + material.offset;
 	mat4 modelView = view * model;
 	
 	// convert position and normal to world-view space
-	oposition = vec3(modelView * vec4(vposition,1));
+	oposition = vec3(modelView * vec4(vposition, 1));
+	onormal = normalize(mat3(modelView) * vnormal);
+	otexcoord = vtexcoord * material.tiling + material.offset;
+
+	oviewdir = normalize(-oposition);
 
 	oshadowcoord = shadowVP * model * vec4(vposition, 1.0);
 	
-	//calculate tbn matrix
-	vec3 normal = normalize(mat3(modelView) * vnormal);
-	vec3 tangent = normalize(mat3(modelView) * vtangent);
-	vec3 bitangent = cross(normal, tangent);
-
-	otbn = mat3(tangent, bitangent, normal);
-	
-	//ocolor = vec4(ads(oposition, onormal), 1);
-	
-	mat4 mvp = projection * view * model;
+	mat4 mvp = projection * modelView;
 	gl_Position = mvp * vec4(vposition, 1.0);
 }

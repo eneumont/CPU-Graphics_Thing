@@ -18,7 +18,7 @@
 				},
 				{
 					"type": "RotateComponent",
-					"euler": [ 0, 30, 0]
+					"euler": [ 0, 30, 0 ]
 				}
 			]
 		},
@@ -37,6 +37,24 @@
 					"type": "ModelComponent",
 					"modelName": "Fantasy/obj/SF_Bld_Castle_Banner_01.obj",
 					"materialName": "Fantasy/fantasy.mtrl"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Ball",
+			"persistent": true,
+			"active": true,
+			"transform": {
+				"position": [ 0, 1, 1 ],
+				"scale": [ 1, 1, 1 ],
+				"rotation": [ 0, 0, 0 ]
+			},
+			"components": [
+				{
+					"type": "ModelComponent",
+					"modelName": "Models/sphere.obj",
+					"materialName": "Materials/cel.mtrl"
 				}
 			]
 		},
@@ -62,7 +80,7 @@
 			"type": "Actor",
 			"name": "depth_debug",
 			"persistent": true,
-			"active":  false,
+			"active": false,
 			"transform": {
 				"position": [ 2.4, 1.4, 0 ],
 				"scale": [ 1, 1, 1 ],

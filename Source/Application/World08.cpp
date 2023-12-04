@@ -48,6 +48,20 @@ namespace nc {
         m_editor->Update();
         m_editor->ProcessGui(m_scene.get());
 
+        ImGui::Begin("Cel");
+        ImGui::SliderInt("Levels", &m_celLevels, 1, 8);
+        ImGui::SliderFloat("Specular Cutoff", &m_celSpecularCutoff, 0, 1);
+        ImGui::SliderFloat("Outline", &m_celOutline, 0, 1);
+        ImGui::End();
+
+        auto program = GET_RESOURCE(Program, "Shaders/cel.prog");
+        if (program) {
+            program->Use();
+            program->SetUniform("celLevels", m_celLevels);
+            program->SetUniform("celSpecularCutoff", m_celSpecularCutoff);
+            program->SetUniform("celOutline", m_celOutline);
+        }
+
         ENGINE.GetSystem<Gui>()->EndFrame();
     }
 

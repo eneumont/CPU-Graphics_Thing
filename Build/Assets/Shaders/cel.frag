@@ -13,6 +13,7 @@ in layout(location = 0) vec3 fposition;
 in layout(location = 1) vec3 fnormal;
 in layout(location = 2) vec2 ftexcoord;
 in layout(location = 3) vec4 fshadowcoord;
+in layout(location = 4) vec3 fviewdir;
 
 out layout(location = 0) vec4 ocolor;
 
@@ -48,6 +49,11 @@ uniform vec3 ambientLight;
 uniform int numLights = 3;
 uniform float shadowBias = 0.005;
 
+uniform int celLevels = 5;
+uniform float celSpecularCutoff = 0.3;
+uniform float celOutline = 0.3;
+const float celScaleFactor = 1.0 / celLevels;
+
 float attenuation(in vec3 position1, in vec3 position2, in float range) {
 	float distanceSqr = dot(position1 - position2, position1 - position2);
 	float rangeSqr = pow(range, 2.0);
@@ -72,7 +78,7 @@ void phong(in Light light, in vec3 position, in vec3 normal, out vec3 diffuse, o
 	}
 	
 	float intensity = max(dot(lightDir, normal), 0) * spotIntensity; 
-	diffuse = (light.color * intensity);
+	diffuse = light.color * (floor(intensity * celLevels) * celScaleFactor);
 
 	//specular
 	specular = vec3(0);
@@ -81,6 +87,7 @@ void phong(in Light light, in vec3 position, in vec3 normal, out vec3 diffuse, o
 		vec3 h = normalize(viewDir + lightDir);
 		intensity = max(dot(h, normal), 0);
 		intensity = pow(intensity, material.shininess);
+		intensity = (intensity < celSpecularCutoff) ? 0 : 1;
 		specular = vec3(intensity * spotIntensity);
 	}
 }
@@ -96,6 +103,12 @@ void main() {
 	float shadow = calculateShadow(fshadowcoord, shadowBias);
  
 	for (int i = 0; i < numLights; i++) {
+		float outline = dot(fnormal, fviewdir);
+		if(outline < celOutline) {
+			ocolor = vec4(0);
+			return;
+		} 
+
 		vec3 diffuse;
 		vec3 specular;
  

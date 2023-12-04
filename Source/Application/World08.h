@@ -41,6 +41,10 @@ namespace nc {
 		float m_speed = 5;
 		float m_blend = 1;
 
+		int m_celLevels = 5;
+		float m_celSpecularCutoff = 0.3;
+		float m_celOutline = 0.3;
+
 		uint32_t m_params{ 0 };
 
 		float m_refraction{ 1.0f };

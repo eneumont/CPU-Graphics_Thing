@@ -3,15 +3,12 @@
 #include <fstream>
 #include <iostream>
 
-namespace nc
-{
-	std::string getFilePath()
-	{
+namespace nc {
+	std::string getFilePath() {
 		return std::filesystem::current_path().string();
 	}
 
-	bool setFilePath(const std::filesystem::path& path)
-	{
+	bool setFilePath(const std::filesystem::path& path) {
 		std::error_code ec;
 		std::filesystem::current_path(path, ec);
 
