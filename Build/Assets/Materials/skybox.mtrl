@@ -2,11 +2,11 @@
   "program": "shaders/skybox.prog",
   "cubemap": "Yokohama",
   "cubemaps": [
-    "textures/Yokohama/posx.jpg",
-    "textures/Yokohama/negx.jpg",
-    "textures/Yokohama/posy.jpg",
-    "textures/Yokohama/negy.jpg",
-    "textures/Yokohama/posz.jpg",
-    "textures/Yokohama/negz.jpg"
+    "textures/Langholmen/posx.jpg",
+    "textures/Langholmen/negx.jpg",
+    "textures/Langholmen/posy.jpg",
+    "textures/Langholmen/negy.jpg",
+    "textures/Langholmen/posz.jpg",
+    "textures/Langholmen/negz.jpg"
   ]
 }
